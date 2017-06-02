@@ -4,18 +4,17 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class AuswahlActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_auswahl);
     }
 
     public void switchActivity(View view){
-        Intent intent = new Intent(this, AuswahlActivity.class);
+        Intent intent = new Intent(this, GrundrechenartenActivity.class);
         startActivity(intent);
     }
 }
