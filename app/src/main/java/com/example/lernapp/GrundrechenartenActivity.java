@@ -34,6 +34,8 @@ public class GrundrechenartenActivity extends AppCompatActivity {
                 Toast.makeText(GrundrechenartenActivity.this,
                         "Richtig!", Toast.LENGTH_LONG).show();
                         switchBack(view);
+                        Client client = new Client();
+                        client.execute("5");
             }
             else {
                 Toast.makeText(GrundrechenartenActivity.this,
