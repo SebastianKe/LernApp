@@ -2,7 +2,7 @@ package com.example.lernapp;
 
 import android.os.AsyncTask;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -15,9 +15,11 @@ public class Client extends AsyncTask<String, Integer, String[]> {
     public static final int SERVER_PORT = 10001;
     // Rechnername des Servers
     public static final String SERVER_HOSTNAME = "10.0.2.2";
+    int[] a;
 
     @Override
     protected String[] doInBackground(String... params) {
+
         try
         {
             // Erzeugen des Socket und Aufbau der Verbindung
@@ -25,12 +27,13 @@ public class Client extends AsyncTask<String, Integer, String[]> {
                     SERVER_HOSTNAME, SERVER_PORT);
             System.out.println ("Verbunden mit Server: " +
                     socket.getRemoteSocketAddress());
-            String nachricht = params[0];
-            System.out.println ("Sende Nachricht \"" +
-                    nachricht + "\" mit Laenge " +
-                    nachricht.length());
+            String nachricht = "Mult";
+            System.out.println ("Sende Nachricht: " +nachricht);
             // Senden der Nachricht über einen Stream
-            socket.getOutputStream().write (nachricht.getBytes());
+            ObjectOutputStream streamOut = new ObjectOutputStream(socket.getOutputStream());
+            streamOut.writeObject(nachricht);
+            ObjectInputStream streamIn = new ObjectInputStream(socket.getInputStream());
+            int[]a=(int[]) streamIn.readObject();
             // Beenden der Kommunikationsverbindung
             socket.close();
         }
@@ -45,6 +48,10 @@ public class Client extends AsyncTask<String, Integer, String[]> {
             // Wenn die Kommunikation fehlschlägt
             System.out.println ("Fehler während der Kommunikation:\n" +
                     e.getMessage());
+        }
+        catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         return new String[0];
     }
