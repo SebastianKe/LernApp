@@ -17,5 +17,6 @@ public class MainActivity extends AppCompatActivity {
     public void switchActivity(View view){
         Intent intent = new Intent(this, AuswahlActivity.class);
         startActivity(intent);
+
     }
 }

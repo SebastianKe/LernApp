@@ -10,16 +10,15 @@ import java.net.UnknownHostException;
  * Created by Philipp on 09.06.2017.
  */
 
-public class Client extends AsyncTask<String, Integer, String[]> {
+public class Client extends AsyncTask<Integer, Integer, int[]> {
     // Port der Serveranwendung
     public static final int SERVER_PORT = 10001;
     // Rechnername des Servers
     public static final String SERVER_HOSTNAME = "10.0.2.2";
-    int[] a;
 
     @Override
-    protected String[] doInBackground(String... params) {
-
+    protected int[] doInBackground(Integer... params) {
+        int[]erg=new int[15];
         try
         {
             // Erzeugen des Socket und Aufbau der Verbindung
@@ -33,7 +32,7 @@ public class Client extends AsyncTask<String, Integer, String[]> {
             ObjectOutputStream streamOut = new ObjectOutputStream(socket.getOutputStream());
             streamOut.writeObject(nachricht);
             ObjectInputStream streamIn = new ObjectInputStream(socket.getInputStream());
-            int[]a=(int[]) streamIn.readObject();
+            erg=(int[]) streamIn.readObject();
             // Beenden der Kommunikationsverbindung
             socket.close();
         }
@@ -53,6 +52,6 @@ public class Client extends AsyncTask<String, Integer, String[]> {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return new String[0];
+        return erg;
     }
 }
