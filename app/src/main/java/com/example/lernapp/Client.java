@@ -16,6 +16,7 @@ public class Client extends AsyncTask<Integer, Integer, int[]> {
     // Rechnername des Servers
     public static final String SERVER_HOSTNAME = "10.0.2.2";
 
+    // Serverkommunikation - wird durch Funktionsaufruf execute aufgerufen
     @Override
     protected int[] doInBackground(Integer... params) {
         int[]erg=new int[15];

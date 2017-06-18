@@ -66,6 +66,9 @@ public class GrundrechenartenActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Baut Verbindung zum Server auf und weißt die erhaltenen Werte den Felder in der UI zu
+     */
     public void createrandomvalues(){
         EditText Operand1 = (EditText) findViewById(R.id.Operand1); Operand1.setKeyListener(null);
         EditText Operand2 = (EditText) findViewById(R.id.Operand2); Operand2.setKeyListener(null);
