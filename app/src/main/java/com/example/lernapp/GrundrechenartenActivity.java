@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 
 public class GrundrechenartenActivity extends AppCompatActivity {
 
-    // Sämtliche Werte die der Server an den Client liefert
+    // Sämtliche Werte die der Server an den Client liefert..
     int[]values=new int[15];
 
     @Override
