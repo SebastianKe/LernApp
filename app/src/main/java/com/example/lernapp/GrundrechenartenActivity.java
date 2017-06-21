@@ -13,6 +13,9 @@ import java.util.concurrent.ExecutionException;
 
 public class GrundrechenartenActivity extends AppCompatActivity {
 
+    // Sämtliche Werte die der Server an den Client liefert
+    int[]values=new int[15];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,54 +23,41 @@ public class GrundrechenartenActivity extends AppCompatActivity {
         createrandomvalues();
     }
 
-    public void calculateresults(View view) {
-        EditText Operand1 = (EditText) findViewById(R.id.Operand1);
-        EditText Operand2 = (EditText) findViewById(R.id.Operand2);
-        TextView Operator1 = (TextView) findViewById(R.id.Operator1);
-        EditText Result1= (EditText) findViewById(R.id.Result1);
-        if(Operator1.getText().toString().equals("X") && !(Result1.getText().toString().equals(""))) {
-            String resulttext= Result1.getText().toString();
-            String operand1text = Operand1.getText().toString();
-            String operand2text = Operand2.getText().toString();
-            int operand1number = Integer.parseInt(operand1text);
-            int operand2number = Integer.parseInt(operand2text);
-            int expected=Integer.parseInt(resulttext);
-            if(operand1number*operand2number==expected){
-                Toast.makeText(GrundrechenartenActivity.this,
-                        "Richtig!", Toast.LENGTH_LONG).show();
-                        Client client = new Client();
-                try {
-                    int[] erg= client.execute().get();
-                    int i = erg[0];
-                    int j = erg[1];
-                    int k = erg[10];
-                    Toast.makeText(GrundrechenartenActivity.this,
-                            "JAAA "+i+" * "+j+"= "+k, Toast.LENGTH_LONG).show();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-                //Operand1.setText(""+i);
-                //Toast.makeText(GrundrechenartenActivity.this,
-                //        ""+i, Toast.LENGTH_LONG).show();
+    // Gleicht die vom Nutzer eingetragenen Werte mit den berechneten Werten des Servers ab
+    public String[] calculateresults(View view) {
+        EditText Result1 = (EditText) findViewById(R.id.Result1);
+        EditText Result2 = (EditText) findViewById(R.id.Result2);
+        EditText Result3 = (EditText) findViewById(R.id.Result3);
+        EditText Result4 = (EditText) findViewById(R.id.Result4);
+        EditText Result5 = (EditText) findViewById(R.id.Result5);
+        // Anzahl der falschen Ergebnisse
+        int count=0;
+        // Pointer auf das nächste vom Server berechnete Ergebnis
+        int pointer=0;
+        String[] enteredresults={Result1.getText().toString(), Result2.getText().toString(), Result3.getText().toString(),Result4.getText().toString(), Result5.getText().toString()};
+        for(int i=0; i<enteredresults.length;i++) {
+            if (!enteredresults[i].equals("" + values[10+pointer])) {
+                count++;
+                pointer++;
             }
-            else {
-                Toast.makeText(GrundrechenartenActivity.this,
-                        "Falsch!", Toast.LENGTH_LONG).show();
-            }
-            //Toast.makeText(GrundrechenartenActivity.this,
-            //        "Your Message", Toast.LENGTH_LONG).show();
-            //Operator1.setText("T");
+           else{
+                pointer++;
+           }
         }
-        else {
+        if(count==0){
             Toast.makeText(GrundrechenartenActivity.this,
-                    "Tragen Sie bitte erst alle Ergebnisse ein!", Toast.LENGTH_LONG).show();
+                    "Alles richtig! Glückwunsch", Toast.LENGTH_LONG).show();
         }
+        else{
+            Toast.makeText(GrundrechenartenActivity.this,
+                    count+" Ergebniss(e) falsch beantwortet", Toast.LENGTH_LONG).show();
+        }
+        String[]answer={"A_Mult",""+count};
+        return answer;
     }
 
     /**
-     * Baut Verbindung zum Server auf und weißt die erhaltenen Werte den Felder in der UI zu
+     * Baut Verbindung zum Server auf und weist die erhaltenen Werte den Felder in der UI zu
      */
     public void createrandomvalues(){
         EditText Operand1 = (EditText) findViewById(R.id.Operand1); Operand1.setKeyListener(null);
@@ -83,24 +73,23 @@ public class GrundrechenartenActivity extends AppCompatActivity {
 
         Client client = new Client();
         try {
-            int []erg = client.execute().get();
-            int i1=erg[0]; Operand1.setText(""+i1);
-            int i2=erg[1]; Operand2.setText(""+i2);
-            int i3=erg[2]; Operand3.setText(""+i3);
-            int i4=erg[3]; Operand4.setText(""+i4);
-            int i5=erg[4]; Operand5.setText(""+i5);
-            int i6=erg[5]; Operand6.setText(""+i6);
-            int i7=erg[6]; Operand7.setText(""+i7);
-            int i8=erg[7]; Operand8.setText(""+i8);
-            int i9=erg[8]; Operand9.setText(""+i9);
-            int i10=erg[9]; Operand10.setText(""+i10);
+            values = client.execute().get();
+            int i1=values[0]; Operand1.setText(""+i1);
+            int i2=values[1]; Operand2.setText(""+i2);
+            int i3=values[2]; Operand3.setText(""+i3);
+            int i4=values[3]; Operand4.setText(""+i4);
+            int i5=values[4]; Operand5.setText(""+i5);
+            int i6=values[5]; Operand6.setText(""+i6);
+            int i7=values[6]; Operand7.setText(""+i7);
+            int i8=values[7]; Operand8.setText(""+i8);
+            int i9=values[8]; Operand9.setText(""+i9);
+            int i10=values[9]; Operand10.setText(""+i10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
     }
-
 
     public void switchBack(View view){
         Intent intent = new Intent(this, AuswahlActivity.class);

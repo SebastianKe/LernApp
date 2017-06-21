@@ -200,11 +200,11 @@
         android:inputType="number"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/Operand6"
-        app:layout_constraintRight_toLeftOf="@+id/Ergebnis4"
+        app:layout_constraintRight_toLeftOf="@+id/Result4"
         android:layout_marginRight="16dp" />
 
     <EditText
-        android:id="@+id/Ergebnis4"
+        android:id="@+id/Result4"
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:ems="10"
@@ -245,13 +245,13 @@
         android:layout_height="50dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintRight_toLeftOf="@+id/editText13"
+        app:layout_constraintRight_toLeftOf="@+id/Result5"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/Operand8" />
 
     <EditText
-        android:id="@+id/editText13"
+        android:id="@+id/Result5"
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:ems="10"
