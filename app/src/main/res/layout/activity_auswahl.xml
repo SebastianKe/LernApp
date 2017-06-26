@@ -7,37 +7,51 @@
     tools:context="com.example.lernapp.AuswahlActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Mult"
         android:layout_width="273dp"
         android:layout_height="48dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
         android:background="#abbeff"
         android:onClick="switchActivity"
         android:text="Mathematik - Grundrechenarten"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/Sub"
         android:layout_width="273dp"
         android:layout_height="48dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Mathematik - Textaufgaben"
         android:background="#95d6a0"
+        android:onClick="switchActivity"
+        android:text="Mathematik - Subtrahieren"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/Add" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/Add"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:background="#da70d6"
+        android:onClick="switchActivity"
+        android:text="Mathematik - Addieren"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/Div" />
+
+    <Button
+        android:id="@+id/Div"
         android:layout_width="273dp"
         android:layout_height="48dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#da70d6"
-        android:text="Mathematik - Geometrie"
+        android:layout_marginTop="20dp"
+        android:background="#ffcd6d"
+        android:onClick="switchActivity"
+        android:text="Mathematik - Dividieren"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/Mult" />
 
 </android.support.constraint.ConstraintLayout>

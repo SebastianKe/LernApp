@@ -1,20 +1,15 @@
 package com.example.lernapp;
 
 import android.content.Intent;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
-import static java.security.AccessController.getContext;
-
-
-public class GrundrechenartenActivity extends AppCompatActivity {
+public class DivActivity extends AppCompatActivity {
 
     // Sämtliche Werte die der Server an den Client liefert..
     int[]values=new int[15];
@@ -22,12 +17,8 @@ public class GrundrechenartenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grundrechenarten);
+        setContentView(R.layout.activity_div);
         createrandomvalues();
-        //String deviceId = Settings.Secure.getString(this.getContentResolver(),
-        //        Settings.Secure.ANDROID_ID);
-        //Toast.makeText(this, deviceId, Toast.LENGTH_SHORT).show();
-
     }
 
     // Gleicht die vom Nutzer eingetragenen Werte mit den berechneten Werten des Servers ab
@@ -47,19 +38,19 @@ public class GrundrechenartenActivity extends AppCompatActivity {
                 count++;
                 pointer++;
             }
-           else{
+            else{
                 pointer++;
-           }
+            }
         }
         if(count==0){
-            Toast.makeText(GrundrechenartenActivity.this,
+            Toast.makeText(DivActivity.this,
                     "Alles richtig! Glückwunsch", Toast.LENGTH_LONG).show();
         }
         else{
-            Toast.makeText(GrundrechenartenActivity.this,
+            Toast.makeText(DivActivity.this,
                     count+" Ergebniss(e) falsch beantwortet", Toast.LENGTH_LONG).show();
         }
-        String[]answer={"A_Mult",""+count};
+        String[]answer={"A_Div",""+count};
         Client client=new Client();
         client.execute(answer);
     }
@@ -79,7 +70,7 @@ public class GrundrechenartenActivity extends AppCompatActivity {
         EditText Operand9 = (EditText) findViewById(R.id.Operand9); Operand9.setKeyListener(null);
         EditText Operand10 = (EditText) findViewById(R.id.Operand10); Operand10.setKeyListener(null);
 
-        String[] s={"Mult"};
+        String[] s={"Div"};
         Client client=new Client();
         try {
             values = client.execute(s).get();
