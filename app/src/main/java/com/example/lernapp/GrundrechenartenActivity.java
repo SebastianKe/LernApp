@@ -24,7 +24,7 @@ public class GrundrechenartenActivity extends AppCompatActivity {
     }
 
     // Gleicht die vom Nutzer eingetragenen Werte mit den berechneten Werten des Servers ab
-    public String[] calculateresults(View view) {
+    public void calculateresults(View view) throws InterruptedException, ExecutionException {
         EditText Result1 = (EditText) findViewById(R.id.Result1);
         EditText Result2 = (EditText) findViewById(R.id.Result2);
         EditText Result3 = (EditText) findViewById(R.id.Result3);
@@ -53,7 +53,8 @@ public class GrundrechenartenActivity extends AppCompatActivity {
                     count+" Ergebniss(e) falsch beantwortet", Toast.LENGTH_LONG).show();
         }
         String[]answer={"A_Mult",""+count};
-        return answer;
+        Client client=new Client();
+        client.execute(answer);
     }
 
     /**
@@ -71,9 +72,10 @@ public class GrundrechenartenActivity extends AppCompatActivity {
         EditText Operand9 = (EditText) findViewById(R.id.Operand9); Operand9.setKeyListener(null);
         EditText Operand10 = (EditText) findViewById(R.id.Operand10); Operand10.setKeyListener(null);
 
-        Client client = new Client();
+        String[] s={"Mult"};
+        Client client=new Client();
         try {
-            values = client.execute().get();
+            values = client.execute(s).get();
             int i1=values[0]; Operand1.setText(""+i1);
             int i2=values[1]; Operand2.setText(""+i2);
             int i3=values[2]; Operand3.setText(""+i3);
@@ -84,6 +86,7 @@ public class GrundrechenartenActivity extends AppCompatActivity {
             int i8=values[7]; Operand8.setText(""+i8);
             int i9=values[8]; Operand9.setText(""+i9);
             int i10=values[9]; Operand10.setText(""+i10);
+            client.cancel(true);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
