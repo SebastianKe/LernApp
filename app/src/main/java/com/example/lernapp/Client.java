@@ -8,6 +8,7 @@ import java.net.*;
 
 /**
  * Created by Philipp on 09.06.2017.
+ *
  */
 
 public class Client extends AsyncTask<String[], String[], int[]> {
