@@ -52,11 +52,11 @@ public class GrundrechenartenActivity extends AppCompatActivity {
            }
         }
         if(count==0){
-            Toast.makeText(GrundrechenartenActivity.this,
+            Toast.makeText(this,
                     "Alles richtig! Glückwunsch", Toast.LENGTH_LONG).show();
         }
         else{
-            Toast.makeText(GrundrechenartenActivity.this,
+            Toast.makeText(this,
                     count+" Ergebniss(e) falsch beantwortet", Toast.LENGTH_LONG).show();
         }
         String[]answer={"A_Mult",""+count, Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};

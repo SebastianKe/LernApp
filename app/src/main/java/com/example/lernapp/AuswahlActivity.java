@@ -1,6 +1,7 @@
 package com.example.lernapp;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,9 @@ public class AuswahlActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auswahl);
+        Client client = new Client();
+        String[] s = {"Stats", Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};
+        client.execute(s);
     }
 
     public void switchActivity(View view){

@@ -44,11 +44,11 @@ public class DivActivity extends AppCompatActivity {
             }
         }
         if(count==0){
-            Toast.makeText(DivActivity.this,
+            Toast.makeText(this,
                     "Alles richtig! Glückwunsch", Toast.LENGTH_LONG).show();
         }
         else{
-            Toast.makeText(DivActivity.this,
+            Toast.makeText(this,
                     count+" Ergebniss(e) falsch beantwortet", Toast.LENGTH_LONG).show();
         }
         String[]answer={"A_Div",""+count, Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};
