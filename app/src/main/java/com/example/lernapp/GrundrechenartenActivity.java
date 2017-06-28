@@ -62,6 +62,8 @@ public class GrundrechenartenActivity extends AppCompatActivity {
         String[]answer={"A_Mult",""+count, Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};
         Client client=new Client();
         client.execute(answer);
+        Intent intent = new Intent(this, AuswahlActivity.class);
+        startActivity(intent);
     }
 
     /**

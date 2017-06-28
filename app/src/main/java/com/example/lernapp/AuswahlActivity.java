@@ -23,18 +23,22 @@ public class AuswahlActivity extends AppCompatActivity {
             case R.id.Mult:
                 Intent intent = new Intent(this, GrundrechenartenActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.Sub:
                 Intent intent1 = new Intent(this, SubActivity.class);
                 startActivity(intent1);
+                finish();
                 break;
             case R.id.Add:
                 Intent intent2 = new Intent(this, AddActivity.class);
                 startActivity(intent2);
+                finish();
                 break;
             case R.id.Div:
                 Intent intent3 = new Intent(this, DivActivity.class);
                 startActivity(intent3);
+                finish();
                 break;
         }
     }

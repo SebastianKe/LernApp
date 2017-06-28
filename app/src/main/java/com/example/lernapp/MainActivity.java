@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Client client= new Client();
-        //String[] s = {"login", Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};
-        //client.execute(s);
+        String[] s = {"login", Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};
+        client.execute(s);
     }
 
     public void switchActivity(View view){
