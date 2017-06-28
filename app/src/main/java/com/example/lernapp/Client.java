@@ -11,7 +11,7 @@ import java.net.*;
  *
  */
 
-public class Client extends AsyncTask<String[], String[], int[]> {
+public class Client extends AsyncTask<String[], String[], String[]> {
     // Port der Serveranwendung
     public static final int SERVER_PORT = 10001;
     // Rechnername des Servers
@@ -20,8 +20,8 @@ public class Client extends AsyncTask<String[], String[], int[]> {
 
     // Serverkommunikation - wird durch Funktionsaufruf execute aufgerufen
     @Override
-    protected int[] doInBackground(String[]... params) {
-        int[]erg=new int[15];
+    protected String[] doInBackground(String[]... params) {
+        String[]erg=new String[15];
         try
         {
                 // Erzeugen des Socket und Aufbau der Verbindung
@@ -34,7 +34,7 @@ public class Client extends AsyncTask<String[], String[], int[]> {
             streamOut.writeObject(nachricht);
             streamOut.flush();
             ObjectInputStream streamIn = new ObjectInputStream(socket.getInputStream());
-            erg=(int[]) streamIn.readObject();
+            erg=(String[]) streamIn.readObject();
             // Beenden der Kommunikationsverbindung
             socket.close();
 

@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 public class DivActivity extends AppCompatActivity {
 
     // Sämtliche Werte die der Server an den Client liefert..
-    int[]values=new int[15];
+    String[]values=new String[15];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class DivActivity extends AppCompatActivity {
         int pointer=0;
         String[] enteredresults={Result1.getText().toString(), Result2.getText().toString(), Result3.getText().toString(),Result4.getText().toString(), Result5.getText().toString()};
         for(int i=0; i<enteredresults.length;i++) {
-            if (!enteredresults[i].equals("" + values[10+pointer])) {
+            if (!enteredresults[i].equals(values[10+pointer])) {
                 count++;
                 pointer++;
             }
@@ -75,17 +75,16 @@ public class DivActivity extends AppCompatActivity {
         Client client=new Client();
         try {
             values = client.execute(s).get();
-            int i1=values[0]; Operand1.setText(""+i1);
-            int i2=values[1]; Operand2.setText(""+i2);
-            int i3=values[2]; Operand3.setText(""+i3);
-            int i4=values[3]; Operand4.setText(""+i4);
-            int i5=values[4]; Operand5.setText(""+i5);
-            int i6=values[5]; Operand6.setText(""+i6);
-            int i7=values[6]; Operand7.setText(""+i7);
-            int i8=values[7]; Operand8.setText(""+i8);
-            int i9=values[8]; Operand9.setText(""+i9);
-            int i10=values[9]; Operand10.setText(""+i10);
-            client.cancel(true);
+            String s1=values[0]; Operand1.setText(s1);
+            String s2=values[1]; Operand2.setText(s2);
+            String s3=values[2]; Operand3.setText(s3);
+            String s4=values[3]; Operand4.setText(s4);
+            String s5=values[4]; Operand5.setText(s5);
+            String s6=values[5]; Operand6.setText(s6);
+            String s7=values[6]; Operand7.setText(s7);
+            String s8=values[7]; Operand8.setText(s8);
+            String s9=values[8]; Operand9.setText(s9);
+            String s10=values[9]; Operand10.setText(s10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
