@@ -59,7 +59,7 @@ public class GrundrechenartenActivity extends AppCompatActivity {
             Toast.makeText(GrundrechenartenActivity.this,
                     count+" Ergebniss(e) falsch beantwortet", Toast.LENGTH_LONG).show();
         }
-        String[]answer={"A_Mult",""+count};
+        String[]answer={"A_Mult",""+count, Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};
         Client client=new Client();
         client.execute(answer);
     }

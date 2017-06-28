@@ -1,6 +1,7 @@
 package com.example.lernapp;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -50,7 +51,7 @@ public class AddActivity extends AppCompatActivity {
             Toast.makeText(AddActivity.this,
                     count+" Ergebniss(e) falsch beantwortet", Toast.LENGTH_LONG).show();
         }
-        String[]answer={"A_Add",""+count};
+        String[]answer={"A_Add",""+count, Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};
         Client client=new Client();
         client.execute(answer);
     }
