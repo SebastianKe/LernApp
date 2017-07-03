@@ -1,7 +1,9 @@
 package com.example.lernapp;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.provider.Settings;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +13,8 @@ import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
-import static java.security.AccessController.getContext;
 
-
-public class GrundrechenartenActivity extends AppCompatActivity {
+public class MultActivity extends AppCompatActivity {
 
     // Sämtliche Werte die der Server an den Client liefert..
     String[]values=new String[15];
@@ -22,12 +22,10 @@ public class GrundrechenartenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grundrechenarten);
-        createrandomvalues();
-        //String deviceId = Settings.Secure.getString(this.getContentResolver(),
-        //        Settings.Secure.ANDROID_ID);
-        //Toast.makeText(this, deviceId, Toast.LENGTH_SHORT).show();
-
+        setContentView(R.layout.activity_mult);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        // Zufallswerte des Typ's Multiplizieren werden erstellt
+        createrandomvalues("Mult");
     }
 
     // Gleicht die vom Nutzer eingetragenen Werte mit den berechneten Werten des Servers ab
@@ -59,17 +57,23 @@ public class GrundrechenartenActivity extends AppCompatActivity {
             Toast.makeText(this,
                     count+" Ergebniss(e) falsch beantwortet", Toast.LENGTH_LONG).show();
         }
-        String[]answer={"A_Mult",""+count, Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};
+        // Baut das Array für Antwort zusammen bestehend aus: A_Mult und den Anzahl der falsch berechneten Aufgaben
+        String[]answer={view.getTag().toString(),""+count, Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)};
+        // Client zur Kommunikation wird aufgebaut..
         Client client=new Client();
+        // Sende die Antwort zur Bearbeitung an den Server
         client.execute(answer);
-        Intent intent = new Intent(this, AuswahlActivity.class);
-        startActivity(intent);
+        // Wechsel zurück zur Auswahl
+        switchBack(view);
     }
 
     /**
-     * Baut Verbindung zum Server auf und weist die erhaltenen Werte den Felder in der UI zu
+     * Weist den Felder in der Activity die erstellten Zufallswerte zu
+     * @param type = der konkrete Aufgabentyp: Mult, Div, Add und Sub,
+     *             damit der richtige Aufgabentyp vom Server geschickt wird
      */
-    public void createrandomvalues(){
+    public void createrandomvalues(String type){
+        // Zunächst müssen alle Felder initialisiert werden um die Werte setzen zu können
         EditText Operand1 = (EditText) findViewById(R.id.Operand1); Operand1.setKeyListener(null);
         EditText Operand2 = (EditText) findViewById(R.id.Operand2); Operand2.setKeyListener(null);
         EditText Operand3 = (EditText) findViewById(R.id.Operand3); Operand3.setKeyListener(null);
@@ -81,9 +85,11 @@ public class GrundrechenartenActivity extends AppCompatActivity {
         EditText Operand9 = (EditText) findViewById(R.id.Operand9); Operand9.setKeyListener(null);
         EditText Operand10 = (EditText) findViewById(R.id.Operand10); Operand10.setKeyListener(null);
 
-        String[] s={"Mult"};
+        // Schickt eine Anforderung mit dem konkreten Aufgabentyp
+        String[] s={type};
         Client client=new Client();
         try {
+            // Zuweisung der Werte
             values = client.execute(s).get();
             String s1=values[0]; Operand1.setText(s1);
             String s2=values[1]; Operand2.setText(s2);
@@ -102,8 +108,22 @@ public class GrundrechenartenActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Wechsle beim Abgeben zurück auf die Auswahl
+     * @param view
+     */
     public void switchBack(View view){
         Intent intent = new Intent(this, AuswahlActivity.class);
         startActivity(intent);
+    }
+
+    /**
+     * Override in dieser Form verhindert das Aufgaben vor dem Abgeben verlassen werden können :-)
+     */
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,
+                "Rechne erst die Aufgaben! Schummeln ist nicht erlaubt", Toast.LENGTH_LONG).show();
+        return;
     }
 }

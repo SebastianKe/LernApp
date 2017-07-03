@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lernapp.GrundrechenartenActivity">
+    tools:context="com.example.lernapp.MultActivity">
     // Erstellung sämtlicher UI-Elemente
     <TextView
         android:id="@+id/textAufgabe1"
@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="calculateresults"
+        android:tag="A_Mult"
         android:text="Ergebnis prüfen"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"

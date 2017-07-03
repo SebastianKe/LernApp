@@ -11,12 +11,13 @@
         android:layout_width="273dp"
         android:layout_height="48dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
         android:background="#abbeff"
         android:onClick="switchActivity"
-        android:text="Mathematik - Grundrechenarten"
+        android:text="Mathematik - Multiplikation"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintTop_toBottomOf="@+id/Stats" />
 
     <Button
         android:id="@+id/Sub"
@@ -27,8 +28,9 @@
         android:text="Mathematik - Subtrahieren"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/Add" />
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/Add"
+        android:layout_marginStart="16dp" />
 
     <Button
         android:id="@+id/Add"
@@ -39,19 +41,30 @@
         android:text="Mathematik - Addieren"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/Div" />
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/Div"
+        android:layout_marginStart="16dp" />
 
     <Button
         android:id="@+id/Div"
         android:layout_width="273dp"
         android:layout_height="48dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:background="#ffcd6d"
         android:onClick="switchActivity"
         android:text="Mathematik - Dividieren"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Mult" />
+        app:layout_constraintTop_toBottomOf="@+id/Mult"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/Stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="39dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

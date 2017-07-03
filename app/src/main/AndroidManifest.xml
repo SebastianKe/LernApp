@@ -29,7 +29,7 @@
         </activity>
         <!-- Setzt die Navigation für die Grundrechenarten Activity -->
         <activity
-            android:name=".GrundrechenartenActivity"
+            android:name=".MultActivity"
             android:parentActivityName=".AuswahlActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
